@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<body style="font-family: Arial, Helvetica, sans-serif; color: #1a1a1a; line-height: 1.6;">
+<div style="max-width: 520px; margin: 0 auto; padding: 24px;">
+
+    <h2 style="margin-bottom: 8px;">Welcome to <span th:text="${brandName}">our shop</span></h2>
+
+    <p>Hi <span th:text="${name} ?: 'there'">there</span>,</p>
+
+    <p>Your account is ready. You can now log in and start shopping.</p>
+
+    <div th:replace="~{emails/fragments :: footer}"></div>
+</div>
+</body>
+</html>

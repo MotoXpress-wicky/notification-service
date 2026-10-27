@@ -21,6 +21,8 @@ spring:
   mail:
     host: localhost
     port: 3025
+  config:
+    import: classpath:notification-events.yaml
 
 auth:
   token:
@@ -40,3 +42,14 @@ logging:
   level:
     org.springframework.web: WARN
     org.hibernate: WARN
+
+notification:
+  exchange: app.events
+  email:
+    queue: notification.email
+    from-address: no-reply@test.local
+    from-name: TestShop
+  push:
+    queue: notification.push
+    enabled: false
+    firebase-credentials-file: /nonexistent/firebase.json

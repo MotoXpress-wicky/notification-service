@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<body style="font-family: Arial, Helvetica, sans-serif; color: #1a1a1a; line-height: 1.6;">
+<div style="max-width: 520px; margin: 0 auto; padding: 24px;">
+
+    <h2 style="margin-bottom: 8px;">Your order <span th:text="${orderNo}">MX-10238</span> is on its way</h2>
+
+    <p>Hi <span th:text="${name} ?: 'there'">there</span>,</p>
+
+    <p>We gave your parcel to the courier.</p>
+
+    <table style="font-size: 14px; border-collapse: collapse;">
+        <tr>
+            <td style="padding: 4px 16px 4px 0; color: #555;">Courier</td>
+            <td th:text="${courier}">Courier A</td>
+        </tr>
+        <tr>
+            <td style="padding: 4px 16px 4px 0; color: #555;">Tracking number</td>
+            <td><strong th:text="${trackingNumber}">WB55310</strong></td>
+        </tr>
+    </table>
+
+    <p style="font-size: 14px; color: #555;">Please keep the cash ready for the courier.</p>
+
+    <div th:replace="~{emails/fragments :: footer}"></div>
+</div>
+</body>
+</html>

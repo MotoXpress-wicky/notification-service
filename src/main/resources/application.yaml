@@ -14,6 +14,10 @@ spring:
       # Flyway creates the tables. Hibernate only checks that they match the entities.
       ddl-auto: validate
 
+  config:
+    # The event -> template map lives in its own file so it is easy to find.
+    import: classpath:notification-events.yaml
+
 server:
   port: 8083
 
@@ -42,3 +46,16 @@ auth:
     secret: ${JWT_SECRET}
   cookie:
     name: access_token
+
+notification:
+  exchange: app.events
+  email:
+    queue: notification.email
+    from-address: no-reply@motoxpress.local
+    # Shown as the sender name, and available in texts as {brandName}.
+    from-name: MotoXpress
+  push:
+    queue: notification.push
+    # true needs the Firebase key file below. Without it, push messages are only written to the log.
+    enabled: false
+    firebase-credentials-file: /app/secrets/firebase.json

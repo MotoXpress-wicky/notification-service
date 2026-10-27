@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<body style="font-family: Arial, Helvetica, sans-serif; color: #1a1a1a; line-height: 1.6;">
+<div style="max-width: 520px; margin: 0 auto; padding: 24px;">
+
+    <h2 style="margin-bottom: 8px;">Your order <span th:text="${orderNo}">MX-10238</span> came back to us</h2>
+
+    <p>Hi <span th:text="${name} ?: 'there'">there</span>,</p>
+
+    <p>The courier could not deliver your parcel, so it was returned to the shop.</p>
+
+    <p style="font-size: 14px; color: #555;">You do not pay anything for this order. You can place a new order any time.</p>
+
+    <div th:replace="~{emails/fragments :: footer}"></div>
+</div>
+</body>
+</html>

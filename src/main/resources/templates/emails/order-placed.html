@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<body style="font-family: Arial, Helvetica, sans-serif; color: #1a1a1a; line-height: 1.6;">
+<div style="max-width: 560px; margin: 0 auto; padding: 24px;">
+
+    <h2 style="margin-bottom: 8px;">We received your order <span th:text="${orderNo}">MX-10238</span></h2>
+
+    <p>Hi <span th:text="${name} ?: 'there'">there</span>, thank you for your order.</p>
+
+    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+        <thead>
+        <tr style="text-align: left; border-bottom: 1px solid #e5e5e5;">
+            <th style="padding: 6px 4px;">Part</th>
+            <th style="padding: 6px 4px;">Qty</th>
+            <th style="padding: 6px 4px; text-align: right;">Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="line : ${lines}" style="border-bottom: 1px solid #f0f0f0;">
+            <td style="padding: 6px 4px;">
+                <span th:text="${line['name']}">Sprocket</span>
+                <span style="color:#888;" th:text="'(' + ${line['partNumber']} + ')'">(123HG)</span>
+            </td>
+            <td style="padding: 6px 4px;" th:text="${line['quantity']}">2</td>
+            <td style="padding: 6px 4px; text-align: right;"
+                th:text="${line['lineTotal']} + ' ' + ${currency}">9000.00 LKR</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p style="text-align: right; font-size: 14px;">
+        Items: <span th:text="${itemsTotal} + ' ' + ${currency}">9000.00 LKR</span><br>
+        Delivery: <span th:text="${deliveryFee} + ' ' + ${currency}">500.00 LKR</span><br>
+        <strong>Total: <span th:text="${total} + ' ' + ${currency}">9500.00 LKR</span></strong>
+    </p>
+
+    <p th:if="${paymentMethod == 'COD'}">
+        You pay in cash when the parcel arrives. Please keep
+        <strong th:text="${total} + ' ' + ${currency}">9500.00 LKR</strong> ready.
+    </p>
+
+    <p style="font-size: 14px; color: #555;">We will email you again when your order is on its way.</p>
+
+    <div th:replace="~{emails/fragments :: footer}"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+# The template map: which event becomes which email and which push message.
+# This is the ONLY place where event names appear. The Java code does not know any of them (M20).
+# To add a new message: add an entry here and, for email, a file in templates/emails/.
+#
+# Texts can use {field} blanks. They are filled from the event body, for example {orderNo}.
+# {brandName} comes from notification.email.from-name.
+notification:
+  events:
+    - name: user.registered
+      email: { template: welcome, subject: "Welcome to {brandName}" }
+
+    - name: user.password.reset
+      email: { template: password-reset, subject: "Reset your password" }
+
+    - name: user.password.changed
+      email: { template: password-changed, subject: "Your password was changed" }
+
+    - name: order.placed
+      email: { template: order-placed, subject: "We received your order {orderNo}" }
+      push: { title: "Order {orderNo} received", body: "We will tell you when it is on its way." }
+
+    - name: order.shipped
+      email: { template: order-shipped, subject: "Your order {orderNo} is on its way" }
+      push: { title: "Your order is on its way", body: "{courier}, tracking number {trackingNumber}" }
+
+    - name: order.delivered
+      email: { template: order-delivered, subject: "Your order {orderNo} was delivered" }
+      push: { title: "Your order was delivered", body: "Order {orderNo} was delivered. Thank you!" }
+
+    - name: order.returned
+      email: { template: order-returned, subject: "Your order {orderNo} came back to us" }
+      push: { title: "Your order came back to us", body: "Order {orderNo} was returned to the shop." }
+
+    - name: order.cancelled
+      email: { template: order-cancelled, subject: "Your order {orderNo} was cancelled" }
+      push: { title: "Your order was cancelled", body: "Order {orderNo} was cancelled." }
