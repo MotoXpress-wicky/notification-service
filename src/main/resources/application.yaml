@@ -8,6 +8,15 @@ spring:
     url: ${DB_URL}
     username: ${POSTGRES_USER}
     password: ${POSTGRES_PASSWORD}
+  rabbitmq:
+    listener:
+      simple:
+        # A failed message is tried 3 times (2 s, then 4 s apart). After that it goes to the dead-letter queue.
+        retry:
+          enabled: true
+          max-attempts: 3
+          initial-interval: 2s
+          multiplier: 2
   jpa:
     open-in-view: false
     hibernate:
