@@ -11,9 +11,8 @@ spring:
   jpa:
     open-in-view: false
     hibernate:
-      ddl-auto: create-drop
-  flyway:
-    enabled: false
+      # Flyway builds the tables from the real SQL files. Hibernate only checks them.
+      ddl-auto: validate
   rabbitmq:
     listener:
       simple:
