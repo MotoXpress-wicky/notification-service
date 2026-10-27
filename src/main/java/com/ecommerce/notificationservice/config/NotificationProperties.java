@@ -27,7 +27,7 @@ public record NotificationProperties(
     public record Push(@NotBlank String queue, boolean enabled, String firebaseCredentialsFile) {
     }
 
-    /** What to do for one event name. A missing email or push part means "do not send that channel". */
+    /** What to do for one event name. A missing email or push section means "do not send that channel". */
     public record EventRule(@NotBlank String name, @Valid EmailRule email, @Valid PushRule push) {
     }
 
