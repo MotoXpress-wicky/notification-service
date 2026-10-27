@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: notification-service
+  profiles:
+    # IntelliJ runs the "dev" profile. The Docker env file sets SPRING_PROFILES_ACTIVE=docker.
+    default: dev
+  datasource:
+    url: ${DB_URL}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+  jpa:
+    open-in-view: false
+    hibernate:
+      # Flyway creates the tables. Hibernate only checks that they match the entities.
+      ddl-auto: validate
+
+server:
+  port: 8083
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+logging:
+  pattern:
+    # traceId = the X-Request-Id that Nginx adds to every request
+    level: "%5p [${spring.application.name},%X{traceId:-}]"
+
+auth:
+  token:
+    # Same secret as user-service. TODO: replace with the RS256 public key when user-service signs with RS256 (M17).
+    secret: ${JWT_SECRET}
+  cookie:
+    name: access_token

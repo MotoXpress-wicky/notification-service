@@ -1,0 +1,19 @@
+# Profile "dev": the service runs in IntelliJ and uses the helper containers on localhost.
+# These values work only on your PC (same as environments/local/env/*.env).
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/notification_db
+    username: notification_service
+    password: notification_service_local_pass
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: motoxpress
+    password: rabbitmq_local_pass
+  mail:
+    host: localhost
+    port: 1025
+
+auth:
+  token:
+    secret: local-dev-only-jwt-secret-never-use-on-a-server-0123456789

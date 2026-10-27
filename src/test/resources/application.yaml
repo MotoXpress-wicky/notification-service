@@ -1,0 +1,35 @@
+# Test-only configuration. It must be named application.yaml so it replaces the main one during tests.
+# Every value is fake and safe to commit.
+spring:
+  application:
+    name: notification-service
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: create-drop
+  flyway:
+    enabled: false
+  rabbitmq:
+    listener:
+      simple:
+        # No RabbitMQ runs during unit tests, so the listeners must not start.
+        auto-startup: false
+  mail:
+    host: localhost
+    port: 3025
+
+auth:
+  token:
+    secret: 0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF # gitleaks:allow (fake, tests only)
+  cookie:
+    name: access_token
+
+logging:
+  level:
+    org.springframework.web: WARN
+    org.hibernate: WARN
