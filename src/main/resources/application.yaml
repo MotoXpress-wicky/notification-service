@@ -26,6 +26,10 @@ management:
     health:
       probes:
         enabled: true
+  health:
+    # A mail server outage must not mark the whole service as down.
+    mail:
+      enabled: false
 
 logging:
   pattern:

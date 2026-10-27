@@ -28,6 +28,14 @@ auth:
   cookie:
     name: access_token
 
+management:
+  health:
+    # Neither RabbitMQ nor a mail server runs during unit tests.
+    rabbit:
+      enabled: false
+    mail:
+      enabled: false
+
 logging:
   level:
     org.springframework.web: WARN
