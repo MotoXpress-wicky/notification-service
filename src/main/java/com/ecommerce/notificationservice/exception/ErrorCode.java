@@ -21,6 +21,8 @@ public enum ErrorCode {
 
     // ---------- other ----------
     NOT_FOUND("The requested item was not found."),
+    METHOD_NOT_ALLOWED("This method is not allowed on this address."),
+    UNSUPPORTED_MEDIA_TYPE("This content type is not supported."),
     INTERNAL_ERROR("Something went wrong. Please try again later.");
 
     /** Name of the request attribute the JWT filter uses to pass a code to the entry point. */
